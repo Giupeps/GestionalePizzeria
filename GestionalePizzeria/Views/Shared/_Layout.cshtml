@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Applicazione ASP.NET</title>
+    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquery")
+</head>
+<body>
+
+
+    <nav class="navbar navbar-expand-lg p-5">
+        <div class="container-fluid justify-content-evenly flex-column">
+            <div id="ContainerLogo" class="d-flex align-items-center">
+                
+                <p class="fs-1 fw-bold text-white">PIZZERIA DA PEPPINO</p>
+            </div>
+
+            <div class="collapse navbar-collapse justify-content-md-center mt-3" id="navbarsExample08">
+                <ul class="navbar-nav d-flex justify-content-between">
+                    <li class="nav-item me-3 text-decoration-none">
+                        @Html.ActionLink("Home", "Index", "Home")
+                    </li>
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item me-3">
+                            @Html.ActionLink("Logout", "Logout", "Utenti")
+                        </li>
+                    }
+
+                    @if (User.Identity.IsAuthenticated == false)
+                    {
+                        <li class="nav-item me-3">
+                            @Html.ActionLink("Login", "Login", "Utenti")
+                        </li>
+                    }
+
+                    @if (User.IsInRole("Cliente"))
+                    {
+                        <li class="nav-item me-3">
+                            @Html.ActionLink("Carrello", "Carrello", "Ordini")
+                        </li>
+
+                    }
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li class="nav-item me-3">
+                            @Html.ActionLink("Amministrazione", "AmministraArticoli", "Pizze")
+                        </li>
+                    }
+                </ul>
+            </div>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample08" aria-controls="navbarsExample08" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </nav>
+
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Applicazione ASP.NET</p>
+        </footer>
+    </div>
+
+    
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

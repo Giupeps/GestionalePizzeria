@@ -1,0 +1,69 @@
+﻿@model GestionalePizzeria.Models.Ordini
+
+@{
+    ViewBag.Title = "Riepilogo";
+}
+<nav class="bg-black py-3">
+    <ul class="d-flex justify-content-center">
+        <li class="me-3 text-white list-unstyled">
+            @Html.ActionLink("Gestisci Articoli", "AmministraArticoli", "Pizze")
+        </li>
+        <li class="me-3 text-white list-unstyled">
+            @Html.ActionLink("Gestisci Ordini Confermati", "AmministraOrdini", "Ordini")
+        </li>
+        <li class="me-3 text-white list-unstyled">
+            @Html.ActionLink("Riepilogo", "Riepilogo", "Ordini")
+        </li>
+    </ul>
+</nav>
+
+<h2>Riepilogo</h2>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-center align-items-center">
+                <input id="calendario" class="form-control my-5" type="date" />
+                <button id="ricerca" class="btn btn-primary ms-3" style="height:38px">Ricerca</button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <p>Numero Totale Ordini Consegnati</p>
+            <p id="totaleOrdini"></p>
+        </div>
+        <div class="col-6">
+            
+            <p>Totale Incasso della Giornata</p>
+            <p id="totaleIncasso"></p>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.ajax({
+            url: 'TotOrdiniCons',
+            type: 'GET',
+            success: function (TotOrdini) {
+                $('#totaleOrdini').text(TotOrdini);
+            }
+        })
+
+        $('#ricerca').click(function () {
+            var data = $('#calendario').val();
+            $.ajax({
+                url: 'TotaleIncasso',
+                type: 'GET',
+                data: { 'data' : data },
+                success: function (totale) {
+                    $('#totaleIncasso').text(totale + '€');
+                }
+            })
+        })
+    })
+</script>
+

@@ -1,0 +1,77 @@
+﻿@model GestionalePizzeria.Models.Utenti
+
+@{
+    ViewBag.Title = "Create";
+}
+
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="container text-center">
+    <h2>Registrazione</h2>
+    <form>
+        <!-- Email input -->
+        <div class="form mb-4">
+            <div class="form-horizontal ">
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group mt-2">
+                    @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10 mx-auto">
+                        @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control mx-auto" } })
+                        @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group mt-2">
+                    @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10 mx-auto">
+                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control mx-auto" } })
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group mt-2">
+                    @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10 mx-auto">
+                        @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control mx-auto" } })
+                        @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group mt-2">
+                    @Html.LabelFor(model => model.Cognome, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10 mx-auto">
+                        @Html.EditorFor(model => model.Cognome, new { htmlAttributes = new { @class = "form-control mx-auto" } })
+                        @Html.ValidationMessageFor(model => model.Cognome, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+
+
+
+            <!-- Submit button -->
+
+            <input type="submit" value="Registrati" class="btn btn-primary mt-4" />
+
+
+            <!-- Register buttons -->
+            <div class="text-center mt-2">
+                <p class="loginbtn">Sei già registrato? fai il @Html.ActionLink("Login", "Login", "Utenti") </p>
+
+            </div>
+        </div>
+    </form>
+</div>
+}
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

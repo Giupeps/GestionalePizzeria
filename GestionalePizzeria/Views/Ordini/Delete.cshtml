@@ -1,0 +1,36 @@
+﻿@model GestionalePizzeria.Models.Ordini
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+
+<h3>Sei sicuro di voler cancellare questo ordine?</h3>
+<div>
+
+    <div class="card rounded-3 mb-4">
+        <div class="card-body p-4">
+            <div class="row d-flex justify-content-between align-items-center">
+                <div class="col-md-2 col-lg-2 col-xl-2">
+                    <img src="/Content/img/@Html.DisplayFor(model => model.Pizze.Foto)"
+                         class="img-fluid rounded-3">
+                </div>
+                <div class="col-md-6 col-lg-6 col-xl-6">
+                    <p class="lead fw-normal mb-2">@Html.DisplayFor(model => model.Pizze.Nome)</p>
+                    <p><span class="text-muted">Quantità: </span>@Html.DisplayFor(model => model.Quantità) <span class="text-muted"><br>Note: </span>@Html.DisplayFor(model => model.Nota)</p>
+                </div>
+               
+            </div>
+        </div>
+    </div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color btn-amm-art">
+            <input type="submit" value="Delete" class="btn btn-danger me-5" /> 
+            @Html.ActionLink("Torna indietro", "Carrello")
+        </div>
+    }
+</div>

@@ -1,0 +1,86 @@
+﻿@model IEnumerable<GestionalePizzeria.Models.Ordini>
+
+@{
+    ViewBag.Title = "AmministraOrdini";
+}
+
+<nav class="bg-black py-3">
+    <ul class="d-flex justify-content-center">
+        <li class="me-3 text-white list-unstyled">
+            @Html.ActionLink("Gestisci Articoli", "AmministraArticoli", "Pizze")
+        </li>
+        <li class="me-3 text-white list-unstyled">
+            @Html.ActionLink("Gestisci Ordini Confermati", "AmministraOrdini", "Ordini")
+        </li>
+        <li class="me-3 text-white list-unstyled">
+            @Html.ActionLink("Riepilogo", "Riepilogo", "Ordini")
+        </li>
+    </ul>
+</nav>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Pizze.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Utenti.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Utenti.Username)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantità)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IndirizzoSpedizione)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nota)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrdineConfermato)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrdineConsegnato)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pizze.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Utenti.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Utenti.Username)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantità)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IndirizzoSpedizione)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nota)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrdineConfermato)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrdineConsegnato)
+            </td>
+            <td class="btn-amm-art">
+                @Html.ActionLink("Modifica", "Edit", new { id = item.IdOrdine }) |
+                @Html.ActionLink("Cancella", "EliminaOrdineAmm", new { id = item.IdOrdine })
+            </td>
+        </tr>
+    }
+
+</table>
+
